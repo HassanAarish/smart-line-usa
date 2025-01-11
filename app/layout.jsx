@@ -1,5 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Header from "./components/Header";
+import Navbar from "./components/Navbar";
+import Breadcrumb from "./components/BreadCrumb";
+import ChatWidget from "./components/ChatWidget";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,10 +23,20 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        {/* <script
+          src="https://code.tidio.co/YOUR_UNIQUE_TIDIO_SCRIPT.js"
+          async
+        ></script> */}
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        {/* Main Content */}
+        <main className="flex-grow">{children}</main>
+
+        {/* Chat Widget */}
+        <ChatWidget />
       </body>
     </html>
   );
