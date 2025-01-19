@@ -1,8 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "./components/Header";
-import Navbar from "./components/Navbar";
-import Breadcrumb from "./components/BreadCrumb";
 import ChatWidget from "./components/ChatWidget";
 
 const geistSans = Geist({

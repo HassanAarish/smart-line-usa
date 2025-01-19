@@ -1,29 +1,80 @@
+"use client";
 import Image from "next/image";
 import logo from "../../public/logo.jpeg";
-import backgroundImage from "../../public/header-background.jpeg";
+import headerFront from "../../public/header-front.png";
+import { useRouter } from "next/navigation";
+import Navbar from "./Navbar";
+import PrimaryButton from "./PrimaryButton";
 
 const Header = () => {
+  const router = useRouter();
+
+  const logoClick = (e) => {
+    e.preventDefault();
+    router.push("/");
+  };
+
+  const handleContact = (e) => {
+    e.preventDefault();
+    router.push("/contact-us");
+  };
+
   return (
     <header
-      className="relative bg-cover bg-center bg-no-repeat h-[500px] flex items-center justify-center"
+      className="w-full bg-cover bg-center bg-no-repeat h-[900px] flex items-center justify-between"
       style={{
-        backgroundImage: `url(${backgroundImage})`,
+        backgroundImage: `url('/header-background.jpeg')`,
       }}
     >
-      <div className="text-center text-white px-4">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">
-          Understand the Word to Unify the World
-        </h1>
-        <p className="text-lg md:text-xl">
-          SMART LINE USA (SLU) provides professional business solutions,
-          including translation, interpretation, and more.
-        </p>
-        <button className="mt-6 px-6 py-3 bg-teal-500 text-white font-semibold rounded-md hover:bg-teal-600">
-          Contact Us
-        </button>
+      {/* Top-left Logo and Navbar */}
+      <div className="absolute top-0 left-64 flex items-center justify-between py-4 gap-8 bg-opacity-80">
+        {/* Logo Section */}
+        <div className="flex items-center">
+          <Image
+            src={logo}
+            alt="Logo"
+            width={190}
+            height={190}
+            className="cursor-pointer"
+            onClick={logoClick}
+          />
+        </div>
+
+        {/* Navbar Section */}
+        <Navbar />
       </div>
-      <Image src={logo} alt="Logo" className="w-[20] h-[20]" />
-      <h1 className="text-2xl font-bold">Smart Line USA</h1>
+
+      {/* Main Content Section */}
+      <div className="w-full flex items-center justify-between gap-8">
+        {/* Left: Header Image */}
+        <div className="w-full flex flex-1 justify-end">
+          <Image
+            src={headerFront}
+            alt="Header Front"
+            className="max-w-full h-auto"
+            width={400}
+            height={400}
+          />
+        </div>
+
+        {/* Right: Text Content */}
+        <div className="w-full flex flex-col flex-1 text-start text-white ml-auto">
+          <h1 className="text-2xl md:text-5xl font-bold mb-4 leading-snug">
+            Understand the Word to Unify the World
+          </h1>
+          <p className="text-lg md:text-sm mb-6 leading-relaxed">
+            SMART LINE USA (SLU) is a professional business solution company
+            that provides oneor more language-relates services, such as
+            translation, notarization, remote interpretation and on-site
+            services.
+          </p>
+          <PrimaryButton
+            className="self-start px-6 py-3 bg-teal-500 text-white font-semibold hover:bg-teal-600"
+            onClick={handleContact}
+            text="Contact Us"
+          />
+        </div>
+      </div>
     </header>
   );
 };
